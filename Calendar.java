@@ -24,15 +24,9 @@ package com.shishir.samples;
  *
  * To run, type in a terminal the following:
  * javac Calendar.java
- * java Calendar <1/2>* [month]^ <year>`
- *
- * *Press 1 for month calendar, 2 for glance
- * calendar
- *
- * ^only required if 1 is entered
- *
- * `enter any year here
+ * java Calendar
  *********************************************/
+import java.util.Scanner;
 
 public class Calendar {
     //method to print calendar of single month
@@ -119,30 +113,12 @@ public class Calendar {
         System.out.println();
     }
 
-    //method to print calendar of an entire year
-    private static void printGlanceCalendar(int year) {
-        System.out.println("        " + Integer.toString(year));
-        System.out.println("====================");
-
-
-        for(Month m : Month.values()) {
-            printCalendar(m, year);
-            System.out.println("\n\n");
-        }
-    }
-
     public static void main(String[] args) {
-        //get user input
-        int status = Integer.parseInt(args[0]);
-
-        if (status == 1) {    //action 1
-            String month = args[1];
-            int year = Integer.parseInt(args[2]);
-            Month m = Month.getValue(month);
-            printCalendar(m, year);
-        } else if (status == 2) {  //action 2
-            int year = Integer.parseInt(args[1]);
-            printGlanceCalendar(year);
-        }
+        Scanner input = new Scanner(System.in);
+        String month = input.next();
+        int year = input.nextInt();
+        input.close();
+        
+        printCalendar(Month.getValue(month), year);
     }
 }
